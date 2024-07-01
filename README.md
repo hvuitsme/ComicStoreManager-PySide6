@@ -3,7 +3,7 @@
 ### Installation Instructions (VSCode)
 
 #### Windows:
-- Double-click on `install.bash`.
+- Double-click on `install.bat`.
 
 #### Linux:
 - Double-click on `install.sh`.
