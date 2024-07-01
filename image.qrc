@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="image">
+    <file>resources/pic/lib4.jpg</file>
+    <file>resources/pic/pic/3e1aa1ca73a324fc07d4b01fb1e6177d.jpg</file>
+    <file>resources/pic/icon.jpg</file>
+    <file>resources/pic/lib1.jpg</file>
+    <file>resources/pic/lib2.jpg</file>
+    <file>resources/pic/lib3.jpg</file>
+    <file>resources/pic/slash.jpg</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>resources/icon-pack/file-circle-check-solid.svg</file>
+    <file>resources/icon-pack/file-invoice-solid.svg</file>
+    <file>resources/icon-pack/user-group-solid.svg</file>
+    <file>resources/icon-pack/checkmark-outline.svg</file>
+    <file>resources/icon-pack/hand-holding-dollar-solid.svg</file>
+    <file>resources/icon-pack/hand-holding-solid.svg</file>
+    <file>resources/icon-pack/wallet-solid.svg</file>
+    <file>resources/icon-pack/repeat-outline.svg</file>
+    <file>resources/icon-pack/arrow_icon.png</file>
+    <file>resources/icon-pack/exit_icon.png</file>
+    <file>resources/icon-pack/exit-outline.svg</file>
+    <file>resources/icon-pack/icons8-pencil-80.png</file>
+    <file>resources/icon-pack/icons8-pencil-80_1.png</file>
+    <file>resources/icon-pack/images-outline.png</file>
+    <file>resources/icon-pack/loading.png</file>
+    <file>resources/icon-pack/lock-closed-outline.svg</file>
+    <file>resources/icon-pack/minimize_icon.png</file>
+  </qresource>
+</RCC>

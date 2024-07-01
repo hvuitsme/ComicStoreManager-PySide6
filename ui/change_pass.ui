@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChangePass</class>
+ <widget class="QWidget" name="ChangePass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>220</width>
+    <height>220</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>10</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>10</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 20px;
+border: 3px solid rgb(0, 170, 127)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>181</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+background-color: rgb(255, 255, 255);
+padding-bottom: 7px;
+color: rgb(0, 0, 0);
+border-bottom:2px solid rgb(0, 128, 128);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Nhập mật khẩu hiện tại</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>181</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+background-color: rgb(255, 255, 255);
+padding-bottom: 7px;
+color: rgb(0, 0, 0);
+border-bottom:2px solid rgb(0, 128, 128);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Nhập mật khẩu mới</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>181</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+background-color: rgb(255, 255, 255);
+padding-bottom: 7px;
+color: rgb(0, 0, 0);
+border-bottom:2px solid rgb(0, 128, 128);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Nhập lại mật khẩu mới</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>161</y>
+        <width>83</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+    color: black; /* Màu chữ */
+    border: 2px solid #008080; /* Màu xanh mòng két cho viền */
+	border-radius: 10px;
+    padding: 2px 2px; /* Khoảng cách bên trong */
+    /*font-size: 20px;  Kích thước chữ */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+QPushButton:hover {
+	background-color: rgb(0, 128, 128);/* Màu xanh mòng két khi hover */
+    color: white; /* Màu chữ khi hover */
+}</string>
+      </property>
+      <property name="text">
+       <string>Thay đổi</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Exit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>10</y>
+        <width>21</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/icon/resources/icon-pack/exit_icon.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../image.qrc"/>
+ </resources>
+ <connections/>
+</ui>
