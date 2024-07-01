@@ -1,9 +1,12 @@
 # ComicStoreManager-PySide6
 
-### Installation Instructions
+### Installation Instructions (VSCode)
 
 #### Windows:
-1. Double-click on `install.bat`.
+- Double-click on `install.bash`.
 
 #### Linux:
-1. Double-click on `install.sh`.
+- Double-click on `install.sh`.
+
+#### Note:
+Make sure you have installed necessary extensions like Python and Pylance in your VSCode. Set up your environment using `ctrl+shift+p` -> `python interpreter`, then run the program by right-clicking and selecting `Run Python file in terminal`.
