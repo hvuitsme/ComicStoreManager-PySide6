@@ -65,7 +65,7 @@ background-color: rgb(162, 255, 236);</string>
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QTableWidget" name="Table_Sp">

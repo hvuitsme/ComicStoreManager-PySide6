@@ -2309,15 +2309,20 @@ class MainEmpl(QMainWindow):
     def re_prt_bill(self):
         row = self.ui.Table_Hd.currentRow()
         
-        kh_name = self.ui.Table_Hd.item(row, 0).text()
-        kh_phone = self.ui.Table_Hd.item(row, 1).text()
-        kh_addr = self.ui.Table_Hd.item(row, 2).text()
-        invoice_date = self.ui.Table_Hd.item(row, 3).text()
-        tt_amount = self.ui.Table_Hd.item(row, 4).text()
+        # kh_name = self.ui.Table_Hd.item(row, 0).text()
+        # kh_phone = self.ui.Table_Hd.item(row, 1).text()
+        # kh_addr = self.ui.Table_Hd.item(row, 2).text()
+        kh_name = self.ui.Kh_name.text()
+        kh_phone = self.ui.Kh_phone.text()
+        kh_addr = self.ui.Kh_Addr.text()
+        
         
         if row == -1 or not kh_name or not kh_phone or not kh_addr:
-            QMessageBox.warning(self, "Thiếu thông tin", "Hãy điền đầy đủ thông tin hóa đơn")
+            QMessageBox.warning(self, "Lỗi", "Bạn chưa chọn hóa đơn cần in",)
             return
+        
+        invoice_date = self.ui.Table_Hd.item(row, 3).text()
+        tt_amount = self.ui.Table_Hd.item(row, 4).text()
         
         try:
             
