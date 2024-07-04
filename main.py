@@ -31,7 +31,6 @@ from gui.ui_login import Ui_Login
 # ==> SPLASH WINDOW
 from gui.ui_splash import Ui_Splash
 
-
 # ==> GLOBALS
 counter = 0
 
@@ -3685,7 +3684,7 @@ class ChangePass(QWidget):
 #         except Exception as e:
 #             QMessageBox.critical(self, "Lỗi", f"Lỗi: {str(e)}")
 
-# # FORGOTPW
+# FORGOTPW
 # class FogotPass(QMainWindow):
 #     def __init__(self):
 #         super().__init__()
@@ -3749,7 +3748,7 @@ class ChangePass(QWidget):
 #         except Exception as e:
 #             QMessageBox.critical(self, "Lỗi", f"Lỗi: {str(e)}")
         
-# # SIGNIN
+# SIGNIN
 # class Signin(QMainWindow):
 #     def __init__(self):
 #         super().__init__()
@@ -3857,10 +3856,10 @@ class Login(QMainWindow):
         self.close()
         
     # def signin_window(self, event):
-        # self.hide()
-        # self.close()
-        # self.sigin_window = Signin()
-        # self.sigin_window.show()
+    #     self.hide()
+    #     self.close()
+    #     self.sigin_window = Signin()
+    #     self.sigin_window.show()
         
     # def forgotpw_window(self, event):
     #     self.hide()
