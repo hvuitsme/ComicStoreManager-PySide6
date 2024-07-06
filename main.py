@@ -136,9 +136,7 @@ class MainAdmin(QMainWindow):
         self.ui.Table_tonkho.setColumnWidth(1, 200)  # Số lượng
         
         self.load_data_inv()
-        self.ui.Table_tonkho.cellClicked.connect(self.select_inv)
-        
-        self.load_inv()
+        # self.ui.Table_tonkho.cellClicked.connect(self.select_inv)
         
         # page 4 -----------------------------------------------------------------------------------
         self.ui.Table_lshd.setColumnCount(3)
@@ -510,7 +508,7 @@ class MainAdmin(QMainWindow):
             self.load_data()  # Tải lại dữ liệu sau khi lưu
             self.load_data_inv()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(), f'đã cập nhật sản phẩm {pd_name} với mã "{pd_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name, f'đã cập nhật sản phẩm {pd_name} với mã "{pd_id}"')
             
             self.ui.lineEdit_ProductID.setText("")
             self.ui.Genre.setCurrentIndex(-1)
@@ -623,7 +621,7 @@ class MainAdmin(QMainWindow):
             self.load_data()
             self.load_data_inv()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm sản phẩm {pd_name} với mã "{pd_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm sản phẩm {pd_name} với mã "{pd_id}"')
             
             self.ui.lineEdit_ProductID.setText("")
             self.ui.Genre.setCurrentIndex(-1)
@@ -635,9 +633,8 @@ class MainAdmin(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Thêm sản phẩm thành công")
             
-            # Xóa nội dung của các lineEdit
+            self.load_histories()
             
-
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
 
@@ -685,8 +682,9 @@ class MainAdmin(QMainWindow):
             connection.close()
 
             self.load_data()
+            self.load_inv()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã xoá sản phẩm {pd_name} với mã "{pd_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã xoá sản phẩm {pd_name} với mã "{pd_id}"')
             
             self.ui.lineEdit_ProductID.setText("")
             self.ui.Genre.setCurrentIndex(-1)
@@ -698,6 +696,8 @@ class MainAdmin(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Xóa sản phẩm thành công")
 
+            self.load_histories()
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -844,7 +844,7 @@ class MainAdmin(QMainWindow):
             self.load_data_nv()  # Tải lại dữ liệu sau khi lưu
             self.load_rev()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã cập nhật nhân viên {nv_name}')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã cập nhật nhân viên {nv_name}')
             
             self.ui.lineEdit_NvName.setText("")
             self.ui.lineEdit_NvUsername.setText("")
@@ -854,6 +854,8 @@ class MainAdmin(QMainWindow):
             self.ui.Status_Nv.setCurrentIndex(-1)
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -933,7 +935,7 @@ class MainAdmin(QMainWindow):
             self.load_data_nv()
             self.load_rev()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm nhân viên {nv_name}')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm nhân viên {nv_name}')
             
             self.ui.lineEdit_NvName.setText("")
             self.ui.lineEdit_NvUsername.setText("")
@@ -944,6 +946,8 @@ class MainAdmin(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Thêm nhân viên thành công")
 
+            self.load_histories()
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -990,7 +994,7 @@ class MainAdmin(QMainWindow):
             self.load_data_nv()  # Tải lại dữ liệu sau khi xóa
             self.load_rev()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã xoá nhân viên {nv_name}')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã xoá nhân viên {nv_name}')
             
             self.ui.lineEdit_NvName.setText("")
             self.ui.lineEdit_NvUsername.setText("")
@@ -1001,6 +1005,8 @@ class MainAdmin(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Xóa nhân viên thành công")
 
+            self.load_histories()
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -1015,24 +1021,6 @@ class MainAdmin(QMainWindow):
             self.ui.lineEdit_ImagePath_2.setText(file_path_nv)
 
     # phần của page3 -----------------------------------------------------------------------------------
-    def load_inv(self):
-        # Kết nối với cơ sở dữ liệu MySQL
-        self.db_connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="qlch"
-        )
-        cursor = self.db_connection.cursor()
-        # Thực hiện truy vấn để lấy dữ liệu từ bảng lớp học
-        cursor.execute("SELECT tensanpham FROM sanpham")
-        rows = cursor.fetchall()
-        # Xóa dữ liệu cũ trong ComboBox trước khi thêm dữ liệu mới
-        self.ui.ID_Inv.clear()
-        # Thêm dữ liệu vào ComboBox
-        for row in rows:
-            self.ui.ID_Inv.addItem(row[0])
-        cursor.close()
     
     def load_data_inv(self):
         try:
@@ -1065,16 +1053,16 @@ class MainAdmin(QMainWindow):
         except mysql.connector.Error as err:
             print(f"Lỗi: {err}")
             
-    def select_inv(self, row, column):
-        self.ui.ID_Inv.setCurrentText(self.ui.Table_tonkho.item(row, 0).text())
-        self.ui.lineEdit_Quantt.setText(self.ui.Table_tonkho.item(row, 1).text())
+    # def select_inv(self, row, column):
+    #     self.ui.lineEdit_Quantt.setText(self.ui.Table_tonkho.item(row, 1).text())
 
     def check_update_inv(self):
-        tk_id = self.ui.ID_Inv.currentText()
-        tk_sl = self.ui.lineEdit_Quantt.text()
-        
         row = self.ui.Table_tonkho.currentRow()
-        if row == -1 or not all([tk_id, tk_sl]):
+        
+        tk_sl = self.ui.lineEdit_Quantt.text()
+        tk_name = self.ui.Table_tonkho.item(row, 0).text()
+        
+        if row == -1 or not tk_sl:
             QMessageBox.warning(self,"Lỗi","Chưa chọn sản phẩm cần tăng số lượng.")
             return
 
@@ -1088,12 +1076,12 @@ class MainAdmin(QMainWindow):
             )
 
             cursor = connection.cursor()
-           
-            cursor.execute("SELECT product_id FROM sanpham WHERE tensanpham = %s", (tk_id,))
+            
+            cursor.execute("SELECT product_id FROM sanpham WHERE tensanpham = %s", (tk_name,))
             product_id = cursor.fetchone()[0]
 
             # Cập nhật số lượng trong bảng tonkho
-            query1 = """UPDATE tonkho SET product_id = %s, quantity = quantity + %s WHERE product_id = %s """
+            query1 = " UPDATE tonkho SET product_id = %s, quantity = quantity + %s WHERE product_id = %s "
             cursor.execute(query1, (product_id, tk_sl, product_id))
             connection.commit()
 
@@ -1103,12 +1091,13 @@ class MainAdmin(QMainWindow):
             self.load_data_inv()
             self.load_data()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm số lượng là {tk_sl} của "{tk_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm số lượng là {tk_sl} của sản phẩm "{tk_name}"')
             
-            self.ui.ID_Inv.setCurrentIndex(-1)
             self.ui.lineEdit_Quantt.setText("")
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1314,12 +1303,14 @@ class MainAdmin(QMainWindow):
 
             self.load_data_nph()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã cập nhật nph tên {pub_name} với mã "{pub_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã cập nhật nph tên {pub_name} với mã "{pub_id}"')
             
             self.ui.lineEdit_PubID.setText("")
             self.ui.lineEdit_PubName.setText("")
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
+            
+            self.load_histories()
 
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1365,13 +1356,15 @@ class MainAdmin(QMainWindow):
 
             self.load_data_nph()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm nph tên {pub_name} với mã "{pub_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm nph tên {pub_name} với mã "{pub_id}"')
             
             self.ui.lineEdit_PubID.setText("")
             self.ui.lineEdit_PubName.setText("")
             
             QMessageBox.information(self, "Thông báo", "Thêm NPH thành công")
-
+            
+            self.load_histories()
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
 
@@ -1403,12 +1396,14 @@ class MainAdmin(QMainWindow):
 
             self.load_data_nph()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm nph tên {pub_name} với mã "{pub_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã xoá nph tên {pub_name} với mã "{pub_id}"')
             
             self.ui.lineEdit_PubID.setText("")
             self.ui.lineEdit_PubName.setText("")
 
             QMessageBox.information(self, "Thông báo", "Xóa NPH thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1483,13 +1478,15 @@ class MainAdmin(QMainWindow):
 
             self.load_data_tg()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã cập nhật tác giả tên {auth_name} với mã "{auth_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã cập nhật tác giả tên {auth_name} với mã "{auth_id}"')
             
             self.ui.lineEdit_AuthID.setText("")
             self.ui.lineEdit_AuthN.setText("")
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
-
+            
+            self.load_histories()
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -1533,7 +1530,7 @@ class MainAdmin(QMainWindow):
 
             self.load_data_tg()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm tác giả tên {auth_name} với mã "{auth_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm tác giả tên {auth_name} với mã "{auth_id}"')
             
             self.ui.lineEdit_PubID.setText("")
             self.ui.lineEdit_PubName.setText("")
@@ -1574,12 +1571,14 @@ class MainAdmin(QMainWindow):
 
             self.load_data_tg()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã xoá tác giả tên {auth_name} với mã "{auth_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã xoá tác giả tên {auth_name} với mã "{auth_id}"')
             
             self.ui.lineEdit_AuthID.setText("")
             self.ui.lineEdit_AuthN.setText("")
 
             QMessageBox.information(self, "Thông báo", "Xóa tác giả thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1654,12 +1653,14 @@ class MainAdmin(QMainWindow):
 
             self.load_data_tl()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm tác giả tên {genre_name} với mã "{genre_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã cập nhật thể loại tên {genre_name} với mã "{genre_id}"')
             
             self.ui.lineEdit_GenreID.setText("")
             self.ui.lineEdit_GenreN.setText("")
 
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1706,12 +1707,14 @@ class MainAdmin(QMainWindow):
 
             self.load_data_tl()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(),f'đã thêm tác giả tên {genre_name} với mã "{genre_id}"')
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã thêm thể loại tên {genre_name} với mã "{genre_id}"')
             
             self.ui.lineEdit_GenreID.setText("")
             self.ui.lineEdit_GenreN.setText("")
 
             QMessageBox.information(self, "Thông báo", "Thêm thể loại thành công")
+            
+            self.load_histories()
             
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
@@ -1746,12 +1749,18 @@ class MainAdmin(QMainWindow):
             connection.close()
 
             self.load_data_tl()  # Tải lại dữ liệu sau khi xóa
-            QMessageBox.information(self, "Thông báo", "Xóa thể loại thành công")
             
-            # Xóa nội dung của các lineEdit
+            self.record_act_epl(self.ui.label_Username.text(), self.name,f'đã xoá thể loại tên {genre_name} với mã "{genre_id}"')
+            
             self.ui.lineEdit_GenreID.setText("")
             self.ui.lineEdit_GenreN.setText("")
 
+            QMessageBox.information(self, "Thông báo", "Xóa thể loại thành công")
+            
+            self.load_histories()
+            
+            # Xóa nội dung của các lineEdit
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -1928,7 +1937,7 @@ class MainEmpl(QMainWindow):
         self.ui.Btn_Upd_Rent.clicked.connect(self.upd_rent)
         
         self.ui.Table_rent.setColumnCount(7)
-        self.ui.Table_rent.setHorizontalHeaderLabels(["Mã sản phẩm","Tên sản phẩm","Số lượng","Giá", "Ngày mượn", "Hạn trả", "Trạng thái"])
+        self.ui.Table_rent.setHorizontalHeaderLabels(["Mã đơn","Tên sản phẩm","Số lượng","Giá", "Ngày mượn", "Hạn trả", "Trạng thái"])
         self.ui.Table_rent.verticalHeader().setVisible(False)  # Tắt số thứ tự đầu bảng
         # Thiết lập kích thước cột tự động theo tỉ lệ
         self.ui.Table_rent.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -2270,7 +2279,7 @@ class MainEmpl(QMainWindow):
             cursor.close()
             connection.close()
             
-            self.record_act_epl(self.ui.label_Username.text(), self.ui.label_Name.text(), f'Thanh toán hoá đơn {invoice_id}')
+            self.record_act_epl(self.ui.label_Username.text(), self.name, f'Thanh toán hoá đơn {invoice_id}')
 
             reply = QMessageBox.question(self, 'In hóa đơn', 'Bạn có muốn in hóa đơn không?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
@@ -2715,122 +2724,10 @@ class MainEmpl(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
             
-            # Xóa nội dung của các lineEdit
-            
-
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
             QMessageBox.critical(self, "Lỗi", str(e))
-
-    # def check_adding(self):
-    #     pd_id = self.ui.lineEdit_ProductID.text()
-    #     pd_genre = self.ui.Genre.currentText()
-    #     pd_pub = self.ui.Pub.currentText()
-    #     pd_auth = self.ui.Author.currentText()
-    #     pd_name = self.ui.lineEdit_ProductName.text()
-    #     pd_price = self.ui.lineEdit_Price.text()
-    #     pd_image = self.ui.lineEdit_ImagePath.text()
-
-    #     if not all([pd_id, pd_genre, pd_pub, pd_auth, pd_name, pd_price, pd_image]):
-    #         QMessageBox.critical(self, "Lỗi", "Chưa điền đầy đủ thông tin sản phẩm cần thêm.")
-    #         return
-        
-    #     # Thư mục đích để lưu hình ảnh
-    #     dest_dir = r"E:\hoc\python\baitaplon\resources\pic\product_image"
-
-    #     # Đảm bảo thư mục đích tồn tại
-    #     if not os.path.exists(dest_dir):
-    #         os.makedirs(dest_dir)
-
-    #     # Đặt tên ảnh mới theo định dạng sp(n).jpg
-    #     def get_new_image_name():
-    #         existing_files = os.listdir(dest_dir)
-    #         existing_numbers = [
-    #             int(f[2:-4]) for f in existing_files if f.startswith("sp") and f.endswith(".jpg") and f[2:-4].isdigit()
-    #         ]
-    #         if existing_numbers:
-    #             new_number = max(existing_numbers) + 1
-    #         else:
-    #             new_number = 1
-    #         return f"sp{new_number}.jpg"
-
-    #     new_image_name = get_new_image_name()
-    #     new_image_path = os.path.join(dest_dir, new_image_name)
-
-    #     try:
-            
-    #         # Di chuyển và đổi tên ảnh
-    #         shutil.copy(pd_image, new_image_path)
-            
-    #         # Cập nhật đường dẫn hình ảnh trong cơ sở dữ liệu
-    #         pd_image = new_image_path
-            
-    #         # Kết nối cơ sở dữ liệu
-    #         connection = mysql.connector.connect(
-    #             host="localhost",
-    #             user="root",
-    #             password="",
-    #             database="qlch"
-    #         )
-
-    #         cursor = connection.cursor()
-    #         # kiểm tra xem sản phẩm đã tồn tại hay chưa
-    #         query_check_name_exist = "SELECT COUNT(*) FROM sanpham WHERE tensanpham = %s"
-    #         cursor.execute(query_check_name_exist, (pd_name,))
-    #         result_name_check = cursor.fetchone()
-    #         if result_name_check[0] > 0:  # Nếu sản phẩm đã tồn tại
-    #             QMessageBox.critical(self, "Lỗi", "Tên sản phẩm đã tồn tại.")
-    #             cursor.close()
-    #             connection.close()
-    #             return
-            
-    #         # Truy vấn để lấy genre_id từ tên thể loại
-    #         cursor.execute("SELECT genre_id FROM theloai WHERE ten_theloai = %s", (pd_genre,))
-    #         genre_id = cursor.fetchone()[0]
-
-    #         # Truy vấn để lấy pub_id từ tên nhà phát hành
-    #         cursor.execute("SELECT pub_id FROM nhaphathanh WHERE ten_nhaph = %s", (pd_pub,))
-    #         pub_id = cursor.fetchone()[0]
-
-    #         # Truy vấn để lấy auth_id từ tên tác giả
-    #         cursor.execute("SELECT auth_id FROM tacgia WHERE ten_tacgia = %s", (pd_auth,))
-    #         auth_id = cursor.fetchone()[0]
-            
-    #         query_product = """
-    #                 INSERT INTO sanpham (product_id, genre_id, pub_id, auth_id, tensanpham, hinhanh, price, status)
-    #                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    #                 """
-    #         cursor.execute(query_product, (pd_id, genre_id, pub_id, auth_id, pd_name, pd_image, pd_price, 'còn hàng'))
-    #         connection.commit()
-
-    #         # Kiểm tra xem sản phẩm đã tồn tại trong bảng 'tonkho' chưa
-    #         query_check_exist = "SELECT COUNT(*) FROM tonkho WHERE product_id = %s"
-    #         cursor.execute(query_check_exist, (pd_id,))
-    #         result = cursor.fetchone()
-    #         if result[0] == 0:  # Nếu sản phẩm chưa tồn tại trong bảng 'tonkho', thêm mới với quantity mặc định là 1
-    #             insert_tonkho = "INSERT INTO tonkho (product_id, quantity) VALUES (%s, 1)"
-    #             cursor.execute(insert_tonkho, (pd_id,))
-    #             connection.commit()
-
-    #         cursor.close()
-    #         connection.close()
-
-    #         self.load_data()
-    #         self.load_data_inv()
-    #         QMessageBox.information(self, "Thông báo", "Thêm sản phẩm thành công")
-            
-    #         # Xóa nội dung của các lineEdit
-    #         self.ui.lineEdit_ProductID.setText("")
-    #         self.ui.Genre.setCurrentIndex(-1)  # Đặt thể loại về trạng thái không có mục nào được chọn
-    #         self.ui.Pub.setCurrentIndex(-1)
-    #         self.ui.Author.setCurrentIndex(-1)
-    #         self.ui.lineEdit_ProductName.setText("")
-    #         self.ui.lineEdit_Price.setText("")
-    #         self.ui.lineEdit_ImagePath.setText("")
-
-    #     except mysql.connector.Error as err:
-    #         QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
 
     def check_delete(self):
         pd_id = self.ui.lineEdit_ProductID.text()
@@ -2876,9 +2773,7 @@ class MainEmpl(QMainWindow):
             connection.close()
 
             self.load_data()  # Tải lại dữ liệu sau khi xóa
-            QMessageBox.information(self, "Thông báo", "Xóa sản phẩm thành công")
             
-            # Xóa nội dung của các lineEdit
             self.ui.lineEdit_ProductID.setText("")
             self.ui.Genre.setCurrentIndex(-1)  # Đặt thể loại về trạng thái không có mục nào được chọn
             self.ui.Pub.setCurrentIndex(-1)
@@ -2887,6 +2782,8 @@ class MainEmpl(QMainWindow):
             self.ui.lineEdit_Price.setText("")
             self.ui.lineEdit_ImagePath.setText("")
 
+            QMessageBox.information(self, "Thông báo", "Xóa sản phẩm thành công")
+            
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -2977,9 +2874,6 @@ class MainEmpl(QMainWindow):
             
             QMessageBox.information(self, "Thông báo", "Cập nhật thành công")
             
-            # Xóa nội dung của các lineEdit
-            
-
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
         except Exception as e:
@@ -3031,7 +2925,7 @@ class MainEmpl(QMainWindow):
             )
 
             cursor = connection.cursor()
-            cursor.execute("SELECT product_id, pd_name, quantity, price, borrow_date, return_date, status_sp, invoice_id, transaction_type FROM chitiethoadon WHERE transaction_type IN ('Thuê')")
+            cursor.execute("SELECT invoice_id, pd_name, quantity, price, borrow_date, return_date, status_sp, transaction_type FROM chitiethoadon WHERE transaction_type IN ('Thuê')")
             results = cursor.fetchall()
 
             self.ui.Table_rent.setRowCount(len(results))
@@ -3052,7 +2946,7 @@ class MainEmpl(QMainWindow):
         stt_rent = self.ui.Rent_st.currentText()
         
         row = self.ui.Table_rent.currentRow()
-        if row == -1 or stt_rent.currentText(-1):
+        if row == -1 or stt_rent == -1:
             QMessageBox.warning(self,"Lỗi", "Chưa cập nhật trạng thái")
             return
         
@@ -3066,7 +2960,7 @@ class MainEmpl(QMainWindow):
             )
             cursor = connection.cursor()
             
-            invoice_id = self.ui.Table_rent.item(row, 7).text()
+            invoice_id = self.ui.Table_rent.item(row, 0).text()
             
             cursor.execute("SELECT detail_id, product_id, quantity, status_sp, transaction_type FROM chitiethoadon WHERE invoice_id = %s AND transaction_type = 'Thuê'", (invoice_id,))
             results = cursor.fetchall()

@@ -65,7 +65,7 @@ background-color: rgb(162, 255, 236);</string>
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QTableWidget" name="Table_sanpham">
@@ -566,7 +566,7 @@ QPushButton:hover{
             <x>0</x>
             <y>0</y>
             <width>971</width>
-            <height>741</height>
+            <height>781</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -577,9 +577,9 @@ QPushButton:hover{
           <property name="geometry">
            <rect>
             <x>-1</x>
-            <y>749</y>
+            <y>789</y>
             <width>971</width>
-            <height>91</height>
+            <height>51</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -594,9 +594,9 @@ QPushButton:hover{
           <widget class="QLineEdit" name="lineEdit_Quantt">
            <property name="geometry">
             <rect>
-             <x>160</x>
+             <x>130</x>
              <y>10</y>
-             <width>221</width>
+             <width>251</width>
              <height>31</height>
             </rect>
            </property>
@@ -611,7 +611,7 @@ QPushButton:hover{
            <property name="geometry">
             <rect>
              <x>10</x>
-             <y>50</y>
+             <y>10</y>
              <width>111</width>
              <height>31</height>
             </rect>
@@ -629,22 +629,6 @@ QPushButton:hover{
            </property>
            <property name="text">
             <string>Cập nhật</string>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="ID_Inv">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>14</y>
-             <width>141</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(197, 197, 197);</string>
-           </property>
-           <property name="placeholderText">
-            <string>ID sản phẩm</string>
            </property>
           </widget>
          </widget>

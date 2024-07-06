@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_adminCyNesl.ui'
+## Form generated from reading UI file 'main_adminYQmuHp.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -232,21 +232,21 @@ class Ui_Main_Admin(object):
         self.page_3.setObjectName(u"page_3")
         self.Table_tonkho = QTableWidget(self.page_3)
         self.Table_tonkho.setObjectName(u"Table_tonkho")
-        self.Table_tonkho.setGeometry(QRect(0, 0, 971, 741))
+        self.Table_tonkho.setGeometry(QRect(0, 0, 971, 781))
         self.Table_tonkho.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.frame_4 = QFrame(self.page_3)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(-1, 749, 971, 91))
+        self.frame_4.setGeometry(QRect(-1, 789, 971, 51))
         self.frame_4.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.lineEdit_Quantt = QLineEdit(self.frame_4)
         self.lineEdit_Quantt.setObjectName(u"lineEdit_Quantt")
-        self.lineEdit_Quantt.setGeometry(QRect(160, 10, 221, 31))
+        self.lineEdit_Quantt.setGeometry(QRect(130, 10, 251, 31))
         self.lineEdit_Quantt.setStyleSheet(u"border:2px solid rgb(0, 170, 127);")
         self.Btn_Update_Inv = QPushButton(self.frame_4)
         self.Btn_Update_Inv.setObjectName(u"Btn_Update_Inv")
-        self.Btn_Update_Inv.setGeometry(QRect(10, 50, 111, 31))
+        self.Btn_Update_Inv.setGeometry(QRect(10, 10, 111, 31))
         self.Btn_Update_Inv.setStyleSheet(u"QPushButton{\n"
 "	border: 2px solid rgb(0, 170, 127);\n"
 "	border-radius: 15px;\n"
@@ -256,10 +256,6 @@ class Ui_Main_Admin(object):
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(0, 170, 127);\n"
 "}")
-        self.ID_Inv = QComboBox(self.frame_4)
-        self.ID_Inv.setObjectName(u"ID_Inv")
-        self.ID_Inv.setGeometry(QRect(10, 14, 141, 22))
-        self.ID_Inv.setStyleSheet(u"background-color: rgb(197, 197, 197);")
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
@@ -699,7 +695,7 @@ class Ui_Main_Admin(object):
 
         self.retranslateUi(Main_Admin)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Main_Admin)
@@ -734,7 +730,6 @@ class Ui_Main_Admin(object):
         self.lineEdit_NvPass.setPlaceholderText(QCoreApplication.translate("Main_Admin", u"Password", None))
         self.lineEdit_Quantt.setPlaceholderText(QCoreApplication.translate("Main_Admin", u"S\u1ed1 l\u01b0\u1ee3ng", None))
         self.Btn_Update_Inv.setText(QCoreApplication.translate("Main_Admin", u"C\u1eadp nh\u1eadt", None))
-        self.ID_Inv.setPlaceholderText(QCoreApplication.translate("Main_Admin", u"ID s\u1ea3n ph\u1ea9m", None))
         self.label_4.setText("")
         self.label_5.setText("")
         self.label_6.setText("")
