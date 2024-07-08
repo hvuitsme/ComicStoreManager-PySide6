@@ -33,9 +33,12 @@
     <item>
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
-       <string notr="true">border-top-right-radius: 50px;
-background-color: rgb(255, 210, 178);
-border-bottom-left-radius: 50px;</string>
+       <string notr="true">#frame.QFrame{
+	border-top-right-radius: 50px;
+	background-color: rgb(255, 255, 255);
+	border-bottom-left-radius: 50px;
+	border:2px solid rgb(0, 170, 127);
+}</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -43,15 +46,17 @@ border-bottom-left-radius: 50px;</string>
       <widget class="QLabel" name="label_image">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
+         <x>2</x>
+         <y>2</y>
          <width>291</width>
-         <height>591</height>
+         <height>576</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-top-right-radius: 0px; 
-border-image: url(:/image/resources/pic/lib1.jpg);</string>
+        <string notr="true">#label_image.QLabel{
+border-image: url(:/image/resources/pic/c6e98c7fe62448b1c87bdab855727124.jpg);
+border-bottom-left-radius: 48px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -87,7 +92,6 @@ border-image: url(:/image/resources/pic/lib1.jpg);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-	background-color: rgb(255, 210, 178);
     color: black; /* Màu chữ */
     border: 2px solid #008080; /* Màu xanh mòng két cho viền */
 	border-radius: 10px;
@@ -97,8 +101,8 @@ border-image: url(:/image/resources/pic/lib1.jpg);</string>
 }
 
 QPushButton:hover {
-	background-color: rgb(255, 255, 255); /* Màu xanh mòng két khi hover */
-    color: black; /* Màu chữ khi hover */
+	background-color: rgb(0, 170, 127); /* Màu xanh mòng két khi hover */
+    color: white; /* Màu chữ khi hover */
 }</string>
        </property>
        <property name="text">
@@ -129,10 +133,9 @@ QPushButton:hover {
        </property>
        <property name="styleSheet">
         <string notr="true">border: none;
-background-color: rgb(255, 210, 178);
 padding-bottom: 7px;
 color: rgb(0, 0, 0);
-border-bottom:2px solid rgb(170, 0, 0);</string>
+border-bottom:2px solid rgb(0, 170, 127);</string>
        </property>
        <property name="text">
         <string/>
@@ -152,10 +155,9 @@ border-bottom:2px solid rgb(170, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border: none;
-background-color: rgb(255, 210, 178);
 padding-bottom: 7px;
 color: rgb(0, 0, 0);
-border-bottom:2px solid rgb(170, 0, 0);</string>
+border-bottom:2px solid rgb(0, 170, 127);</string>
        </property>
        <property name="placeholderText">
         <string>Mật khẩu</string>
@@ -222,10 +224,9 @@ border-bottom:2px solid rgb(170, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border: none;
-background-color: rgb(255, 210, 178);
 padding-bottom: 7px;
 color: rgb(0, 0, 0);
-border-bottom:2px solid rgb(170, 0, 0);</string>
+border-bottom:2px solid rgb(0, 170, 127);</string>
        </property>
        <property name="text">
         <string/>
@@ -245,10 +246,9 @@ border-bottom:2px solid rgb(170, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border: none;
-background-color: rgb(255, 210, 178);
 padding-bottom: 7px;
 color: rgb(0, 0, 0);
-border-bottom:2px solid rgb(170, 0, 0);</string>
+border-bottom:2px solid rgb(0, 170, 127);</string>
        </property>
        <property name="placeholderText">
         <string>Email</string>

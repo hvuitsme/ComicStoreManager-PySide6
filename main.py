@@ -25,7 +25,7 @@ from gui.ui_change_pass import Ui_ChangePass
 # ==> REPLACEPW WINDOW
 # from gui.ui_replacepw import Ui_ReplacePw
 # ==> SIGNIN WINDOW
-# from gui.ui_signin import Ui_Signin
+from gui.ui_signin import Ui_Signin
 # ==> LOGIN WINDOW
 from gui.ui_login import Ui_Login
 # ==> SPLASH WINDOW
@@ -3648,81 +3648,81 @@ class ChangePass(QWidget):
 #             QMessageBox.critical(self, "Lỗi", f"Lỗi: {str(e)}")
         
 # SIGNIN
-# class Signin(QMainWindow):
-#     def __init__(self):
-#         super().__init__()
-#         self.ui = Ui_Signin()
-#         self.ui.setupUi(self)
+class Signin(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Signin()
+        self.ui.setupUi(self)
         
-#         ## XOÁ TITLEBAR
-#         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-#         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        ## XOÁ TITLEBAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         
-#         self.ui.label_Return.mousePressEvent = self.return_login
-#         self.ui.label_Exit.mousePressEvent = self.close_window
-#         self.ui.lineEdit_3.setEchoMode(QLineEdit.EchoMode.Password)
-#         self.ui.lineEdit_4.setEchoMode(QLineEdit.EchoMode.Password)
-#         self.ui.label_Login.mousePressEvent = self.return_login
-#         self.ui.Btn_Signin.clicked.connect(self.check_signin)
+        self.ui.label_Return.mousePressEvent = self.return_login
+        self.ui.label_Exit.mousePressEvent = self.close_window
+        self.ui.lineEdit_3.setEchoMode(QLineEdit.EchoMode.Password)
+        self.ui.lineEdit_4.setEchoMode(QLineEdit.EchoMode.Password)
+        self.ui.label_Login.mousePressEvent = self.return_login
+        self.ui.Btn_Signin.clicked.connect(self.check_signin)
         
-#     def close_window(self, event):
-#         self.close()
+    def close_window(self, event):
+        self.close()
         
-#     def return_login(self, event):
-#         # self.hide()
-#         self.close()
-#         self.login_window = Login()
-#         self.login_window.show()
+    def return_login(self, event):
+        # self.hide()
+        self.close()
+        self.login_window = Login()
+        self.login_window.show()
         
-#     def check_signin(self):
-#         email = self.ui.lineEdit.text()
-#         username = self.ui.lineEdit_2.text()
-#         password = self.ui.lineEdit_3.text()
-#         cfpassword = self.ui.lineEdit_4.text()
+    def check_signin(self):
+        email = self.ui.lineEdit.text()
+        username = self.ui.lineEdit_2.text()
+        password = self.ui.lineEdit_3.text()
+        cfpassword = self.ui.lineEdit_4.text()
         
-#         if not email or not username or not password or not cfpassword:
-#             QMessageBox.warning(self, "Lỗi", "Thiếu thông tin")
-#             return
-#         elif password != cfpassword:
-#             QMessageBox.warning(self, "Lỗi", "Mật khẩu không khớp")
-#             return
+        if not email or not username or not password or not cfpassword:
+            QMessageBox.warning(self, "Lỗi", "Thiếu thông tin")
+            return
+        elif password != cfpassword:
+            QMessageBox.warning(self, "Lỗi", "Mật khẩu không khớp")
+            return
         
-#         try:
-#             # Kết nối cơ sở dữ liệu
-#             connection = mysql.connector.connect(
-#                 host="localhost",
-#                 user="root",
-#                 password="",
-#                 database="qlch"
-#             )
+        try:
+            # Kết nối cơ sở dữ liệu
+            connection = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="qlch"
+            )
 
-#             cursor = connection.cursor()
+            cursor = connection.cursor()
             
-#             query_check_name_exist = "SELECT COUNT(*) FROM users WHERE username = %s"
-#             cursor.execute(query_check_name_exist, (username,))
-#             result_name_check = cursor.fetchone()
-#             if result_name_check[0] > 0:  # Nếu sản phẩm đã tồn tại
-#                 QMessageBox.critical(self, "Lỗi", "Tên người dùng này đã tồn tại.")
-#                 cursor.close()
-#                 connection.close()
-#                 return
+            query_check_name_exist = "SELECT COUNT(*) FROM users WHERE username = %s"
+            cursor.execute(query_check_name_exist, (username,))
+            result_name_check = cursor.fetchone()
+            if result_name_check[0] > 0:  # Nếu sản phẩm đã tồn tại
+                QMessageBox.critical(self, "Lỗi", "Tên người dùng này đã tồn tại.")
+                cursor.close()
+                connection.close()
+                return
             
-#             query = """
-#                     INSERT INTO users (username, email, password, role)
-#                     VALUES (%s, %s, %s, %s)
-#                     """
-#             cursor.execute(query, (username, email, password, 'Khách'))
-#             connection.commit()
+            query = """
+                    INSERT INTO users (username, email, password, role)
+                    VALUES (%s, %s, %s, %s)
+                    """
+            cursor.execute(query, (username, email, password, 'Khách'))
+            connection.commit()
 
-#             cursor.close()
-#             connection.close()
+            cursor.close()
+            connection.close()
 
-#             QMessageBox.information(self, "Thông báo", "Đăng ký thành công")
+            QMessageBox.information(self, "Thông báo", "Đăng ký thành công")
 
-#         except mysql.connector.Error as err:
-#             QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
-#         except Exception as e:
-#             QMessageBox.critical(self, "Lỗi", f"Lỗi: {str(e)}")
+        except mysql.connector.Error as err:
+            QMessageBox.critical(self, "Database Lỗi", f"Lỗi: {err}")
+        except Exception as e:
+            QMessageBox.critical(self, "Lỗi", f"Lỗi: {str(e)}")
 
 # LOGIN
 class Login(QMainWindow):
@@ -3733,7 +3733,7 @@ class Login(QMainWindow):
         
         self.ui.Rem_ckBox.hide()
         self.ui.label_ForgotPw.hide()
-        self.ui.label_Signin.hide()
+        # self.ui.label_Signin.hide()
         
         ## XOÁ TITLEBAR
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -3741,7 +3741,7 @@ class Login(QMainWindow):
         
         self.ui.label_Exit.mousePressEvent = self.close_window
         self.ui.lineEdit_2.setEchoMode(QLineEdit.EchoMode.Password)
-        # self.ui.label_Signin.mousePressEvent = self.signin_window
+        self.ui.label_Signin.mousePressEvent = self.signin_window
         # self.ui.label_ForgotPw.mousePressEvent = self.forgotpw_window
         self.ui.pushButton.clicked.connect(self.check_login)
         
@@ -3754,11 +3754,11 @@ class Login(QMainWindow):
     def close_window(self, event):
         self.close()
         
-    # def signin_window(self, event):
-    #     self.hide()
-    #     self.close()
-    #     self.sigin_window = Signin()
-    #     self.sigin_window.show()
+    def signin_window(self, event):
+        self.hide()
+        self.close()
+        self.sigin_window = Signin()
+        self.sigin_window.show()
         
     # def forgotpw_window(self, event):
     #     self.hide()

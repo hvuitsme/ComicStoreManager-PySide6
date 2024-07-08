@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'loginzZjomr.ui'
+## Form generated from reading UI file 'loginxuvMOL.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -42,9 +42,9 @@ class Ui_Login(object):
         self.frame.setFrameShape(QFrame.NoFrame)
         self.label_image = QLabel(self.frame)
         self.label_image.setObjectName(u"label_image")
-        self.label_image.setGeometry(QRect(0, 0, 291, 581))
+        self.label_image.setGeometry(QRect(2, 2, 291, 576))
         self.label_image.setStyleSheet(u"border-image: url(:/image/resources/pic/lib4.jpg);\n"
-"border-bottom-left-radius: 50px; ")
+"border-bottom-left-radius: 48px; ")
         self.label_Dangnhap = QLabel(self.frame)
         self.label_Dangnhap.setObjectName(u"label_Dangnhap")
         self.label_Dangnhap.setGeometry(QRect(320, 140, 161, 41))

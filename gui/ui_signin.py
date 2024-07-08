@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'signinAtvRwZ.ui'
+## Form generated from reading UI file 'signiniTSntw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -33,15 +33,20 @@ class Ui_Signin(object):
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
-        self.frame.setStyleSheet(u"border-top-right-radius: 50px;\n"
-"background-color: rgb(255, 210, 178);\n"
-"border-bottom-left-radius: 50px;")
+        self.frame.setStyleSheet(u"#frame.QFrame{\n"
+"	border-top-right-radius: 50px;\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-bottom-left-radius: 50px;\n"
+"	border:2px solid rgb(0, 170, 127);\n"
+"}")
         self.frame.setFrameShape(QFrame.NoFrame)
         self.label_image = QLabel(self.frame)
         self.label_image.setObjectName(u"label_image")
-        self.label_image.setGeometry(QRect(0, 0, 291, 591))
-        self.label_image.setStyleSheet(u"border-top-right-radius: 0px; \n"
-"border-image: url(:/image/resources/pic/lib1.jpg);")
+        self.label_image.setGeometry(QRect(2, 2, 291, 576))
+        self.label_image.setStyleSheet(u"#label_image.QLabel{\n"
+"border-image: url(:/image/resources/pic/c6e98c7fe62448b1c87bdab855727124.jpg);\n"
+"border-bottom-left-radius: 48px;\n"
+"}")
         self.label_Dangky = QLabel(self.frame)
         self.label_Dangky.setObjectName(u"label_Dangky")
         self.label_Dangky.setGeometry(QRect(320, 140, 161, 41))
@@ -53,7 +58,6 @@ class Ui_Signin(object):
         self.Btn_Signin.setObjectName(u"Btn_Signin")
         self.Btn_Signin.setGeometry(QRect(320, 430, 231, 41))
         self.Btn_Signin.setStyleSheet(u"QPushButton {\n"
-"	background-color: rgb(255, 210, 178);\n"
 "    color: black; /* M\u00e0u ch\u1eef */\n"
 "    border: 2px solid #008080; /* M\u00e0u xanh m\u00f2ng k\u00e9t cho vi\u1ec1n */\n"
 "	border-radius: 10px;\n"
@@ -63,8 +67,8 @@ class Ui_Signin(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"	background-color: rgb(255, 255, 255); /* M\u00e0u xanh m\u00f2ng k\u00e9t khi hover */\n"
-"    color: black; /* M\u00e0u ch\u1eef khi hover */\n"
+"	background-color: rgb(0, 170, 127); /* M\u00e0u xanh m\u00f2ng k\u00e9t khi hover */\n"
+"    color: white; /* M\u00e0u ch\u1eef khi hover */\n"
 "}")
         self.label_title = QLabel(self.frame)
         self.label_title.setObjectName(u"label_title")
@@ -73,18 +77,16 @@ class Ui_Signin(object):
         self.lineEdit_4.setObjectName(u"lineEdit_4")
         self.lineEdit_4.setGeometry(QRect(320, 370, 231, 31))
         self.lineEdit_4.setStyleSheet(u"border: none;\n"
-"background-color: rgb(255, 210, 178);\n"
 "padding-bottom: 7px;\n"
 "color: rgb(0, 0, 0);\n"
-"border-bottom:2px solid rgb(170, 0, 0);")
+"border-bottom:2px solid rgb(0, 170, 127);")
         self.lineEdit_3 = QLineEdit(self.frame)
         self.lineEdit_3.setObjectName(u"lineEdit_3")
         self.lineEdit_3.setGeometry(QRect(320, 320, 231, 31))
         self.lineEdit_3.setStyleSheet(u"border: none;\n"
-"background-color: rgb(255, 210, 178);\n"
 "padding-bottom: 7px;\n"
 "color: rgb(0, 0, 0);\n"
-"border-bottom:2px solid rgb(170, 0, 0);")
+"border-bottom:2px solid rgb(0, 170, 127);")
         self.label_Exit = QLabel(self.frame)
         self.label_Exit.setObjectName(u"label_Exit")
         self.label_Exit.setGeometry(QRect(540, 20, 21, 21))
@@ -103,18 +105,16 @@ class Ui_Signin(object):
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setGeometry(QRect(320, 270, 231, 31))
         self.lineEdit_2.setStyleSheet(u"border: none;\n"
-"background-color: rgb(255, 210, 178);\n"
 "padding-bottom: 7px;\n"
 "color: rgb(0, 0, 0);\n"
-"border-bottom:2px solid rgb(170, 0, 0);")
+"border-bottom:2px solid rgb(0, 170, 127);")
         self.lineEdit = QLineEdit(self.frame)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(320, 220, 231, 31))
         self.lineEdit.setStyleSheet(u"border: none;\n"
-"background-color: rgb(255, 210, 178);\n"
 "padding-bottom: 7px;\n"
 "color: rgb(0, 0, 0);\n"
-"border-bottom:2px solid rgb(170, 0, 0);")
+"border-bottom:2px solid rgb(0, 170, 127);")
 
         self.verticalLayout.addWidget(self.frame)
 

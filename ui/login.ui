@@ -46,15 +46,15 @@ border: 2px solid rgb(0, 170, 127);
       <widget class="QLabel" name="label_image">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
+         <x>2</x>
+         <y>2</y>
          <width>291</width>
-         <height>581</height>
+         <height>576</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-image: url(:/image/resources/pic/lib4.jpg);
-border-bottom-left-radius: 50px; </string>
+border-bottom-left-radius: 48px; </string>
        </property>
        <property name="text">
         <string/>
